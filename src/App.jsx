@@ -5,7 +5,9 @@ import Header from "./components/Header";
 import { db } from "./data/db";
 
 function App() {
+
   const [data, setData] = useState(db);
+  const [carro, setCarro] = useState([]);
 
   return (
     <>
@@ -16,7 +18,10 @@ function App() {
         <div className="row mt-5">
           {data.map((propiedades) => (
             <Guitar 
+              key={propiedades.id}
               propiedades={propiedades}
+              carro={carro}
+              setCarro={setCarro}
             />
           ))}
         </div>
