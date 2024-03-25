@@ -1,10 +1,5 @@
-function Guitar({ propiedades, setCarro, carro, Addcarrito }) {
-
+function Guitar({ propiedades, Addcarrito }) {
   const { description, image, name, price } = propiedades;
-
-  const handleClick = (propiedades) => {
-    setCarro([...carro, propiedades])
-  }
 
   return (
     <div className="col-md-6 col-lg-4 my-4 row align-items-center">
@@ -18,8 +13,12 @@ function Guitar({ propiedades, setCarro, carro, Addcarrito }) {
       <div className="col-8">
         <h3 className="text-black fs-4 fw-bold text-uppercase">{name}</h3>
         <p>{description}</p>
-        <p className="fw-black text-primary fs-3">{price}</p>
-        <button type="button" className="btn btn-dark w-100" onClick={() => Addcarrito(propiedades)}>
+        <p className="fw-black text-primary fs-3">${price}</p>
+        <button
+          type="button"
+          className="btn btn-dark w-100"
+          onClick={() => Addcarrito(propiedades)}
+        >
           Agregar al Carrito
         </button>
       </div>
