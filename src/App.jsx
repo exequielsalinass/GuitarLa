@@ -9,6 +9,10 @@ function App() {
   const [data, setData] = useState(db);
   const [carro, setCarro] = useState([]);
 
+  const Addcarrito = (propiedades) => {
+    setCarro([...carro, propiedades])
+  }
+
   return (
     <>
       <Header />
@@ -22,6 +26,7 @@ function App() {
               propiedades={propiedades}
               carro={carro}
               setCarro={setCarro}
+              Addcarrito={Addcarrito}
             />
           ))}
         </div>
