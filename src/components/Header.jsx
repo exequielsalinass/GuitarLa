@@ -1,4 +1,10 @@
+import { useMemo } from "react";
+
 function Header({ carro }) {
+
+  const totalCarro = useMemo(() => carro.reduce( (total, item ) => total + (item.cantidad * item.price), 0), [carro])
+
+
   return (
     <header className="py-5 header">
       <div className="container-xl">
@@ -66,7 +72,7 @@ function Header({ carro }) {
                   </table>
                 )}
                 <p className="text-end">
-                  Total pagar: <span className="fw-bold">$899</span>
+                  Total pagar: <span className="fw-bold">${totalCarro()}</span>
                 </p>
                 <button className="btn btn-dark w-100 mt-3 p-2">
                   Vaciar Carrito
