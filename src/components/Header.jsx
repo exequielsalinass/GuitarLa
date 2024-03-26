@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-function Header({ carro, Removecarrito }) {
+function Header({ carro, Removecarrito, Incrementar, Reducir }) {
 
   const totalCarro = useMemo( () => carro.reduce( (total, item ) => total + (item.cantidad * item.price), 0), [carro] )
 
@@ -42,7 +42,7 @@ function Header({ carro, Removecarrito }) {
                     </thead>
                     <tbody>
                       {carro.map((guitar) => (
-                        <tr>
+                        <tr key={guitar.id}>
                           <td>
                             <img
                               className="img-fluid"
@@ -53,11 +53,19 @@ function Header({ carro, Removecarrito }) {
                           <td>{guitar.name}</td>
                           <td className="fw-bold">${guitar.price}</td>
                           <td className="flex align-items-start gap-4">
-                            <button type="button" className="btn btn-dark">
+                            <button 
+                              type="button" 
+                              className="btn btn-dark"
+                              onClick={() => Reducir(guitar.id)}
+                            >
                               -
                             </button>
                             {guitar.cantidad}
-                            <button type="button" className="btn btn-dark">
+                            <button 
+                              type="button" 
+                              className="btn btn-dark"
+                              onClick={() => Incrementar(guitar.id)}
+                            >
                               +
                             </button>
                           </td>
@@ -65,7 +73,7 @@ function Header({ carro, Removecarrito }) {
                             <button 
                               className="btn btn-danger" 
                               type="button"
-                              onClick={Removecarrito(guitar.item)}
+                              onClick={() => Removecarrito(guitar.id)}
                             >
                               X
                             </button>

@@ -21,8 +21,16 @@ function App() {
     }
   };
 
-  const Removecarrito = (propiedades) => {
-    console.log("eliminando")
+  const Removecarrito = (id) => {
+    setCarro(prevCarro => prevCarro.filter(guitar => guitar.id !== id) )
+  }
+
+  const Incrementar = (id) => {
+    console.log("incremento", id)
+  }
+
+  const Reducir = (id) => {
+    console.log("resto", id)
   }
 
   return (
@@ -30,6 +38,8 @@ function App() {
       <Header 
         carro={carro}
         Removecarrito={Removecarrito}
+        Incrementar={Incrementar}
+        Reducir={Reducir}
       />
 
       <main className="container-xl mt-5">
