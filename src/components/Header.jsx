@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 
-function Header({ carro }) {
+function Header({ carro, Removecarrito }) {
 
-  const totalCarro = useMemo(() => carro.reduce( (total, item ) => total + (item.cantidad * item.price), 0), [carro])
+  const totalCarro = useMemo( () => carro.reduce( (total, item ) => total + (item.cantidad * item.price), 0), [carro] )
 
 
   return (
@@ -62,7 +62,11 @@ function Header({ carro }) {
                             </button>
                           </td>
                           <td>
-                            <button className="btn btn-danger" type="button">
+                            <button 
+                              className="btn btn-danger" 
+                              type="button"
+                              onClick={Removecarrito(guitar.item)}
+                            >
                               X
                             </button>
                           </td>
@@ -72,7 +76,7 @@ function Header({ carro }) {
                   </table>
                 )}
                 <p className="text-end">
-                  Total pagar: <span className="fw-bold">${totalCarro()}</span>
+                  Total pagar: <span className="fw-bold">${totalCarro}</span>
                 </p>
                 <button className="btn btn-dark w-100 mt-3 p-2">
                   Vaciar Carrito

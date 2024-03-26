@@ -21,10 +21,15 @@ function App() {
     }
   };
 
+  const Removecarrito = (propiedades) => {
+    console.log("eliminando")
+  }
+
   return (
     <>
       <Header 
         carro={carro}
+        Removecarrito={Removecarrito}
       />
 
       <main className="container-xl mt-5">
