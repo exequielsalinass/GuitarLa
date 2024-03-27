@@ -22,20 +22,38 @@ function App() {
   };
 
   const Removecarrito = (id) => {
-    setCarro(prevCarro => prevCarro.filter(guitar => guitar.id !== id) )
-  }
+    setCarro((prevCarro) => prevCarro.filter((guitar) => guitar.id !== id));
+  };
 
   const Incrementar = (id) => {
-    console.log("incremento", id)
-  }
+    const actualizarCarro = carro.map((propiedades) => {
+      if (propiedades.id === id) {
+        return {
+          ...propiedades,
+          cantidad: propiedades.cantidad + 1,
+        };
+      }
+      return propiedades;
+    });
+    setCarro(actualizarCarro);
+  };
 
   const Reducir = (id) => {
-    console.log("resto", id)
-  }
+    const actualizarCarro = carro.map((propiedades) => {
+      if (propiedades.id === id) {
+        return {
+          ...propiedades,
+          cantidad: propiedades.cantidad - 1,
+        };
+      }
+      return propiedades;
+    });
+    setCarro(actualizarCarro);
+  };
 
   return (
     <>
-      <Header 
+      <Header
         carro={carro}
         Removecarrito={Removecarrito}
         Incrementar={Incrementar}
