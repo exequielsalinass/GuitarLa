@@ -1,18 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Footer from "./components/Footer";
 import Guitar from "./components/Guitar";
 import Header from "./components/Header";
 import { db } from "./data/db";
 
 function App() {
+  const estadoInicial = () => {
+    const carroLocalStorage = localStorage.getItem("carro");
+    return carroLocalStorage ? JSON.parse(carroLocalStorage) : [];
+  };
+
   const [data, setData] = useState(db);
-  const [carro, setCarro] = useState([]);
+  const [carro, setCarro] = useState(estadoInicial);
+
+  useEffect(() => {
+    localStorage.setItem("carro", JSON.stringify(carro));
+  }, [carro]);
 
   const Addcarrito = (propiedades) => {
     const itemExiste = carro.findIndex((guitar) => guitar.id == propiedades.id); //Devuelve -1 cuando no encuentra algo igual
 
     if (itemExiste >= 0) {
-      if (carro[itemExiste].cantidad >= 5) return
+      if (carro[itemExiste].cantidad >= 5) return;
       const actualizarCarro = [...carro];
       actualizarCarro[itemExiste].cantidad++;
       setCarro(actualizarCarro);
@@ -53,7 +62,7 @@ function App() {
   };
 
   const limpiarCarro = () => {
-    setCarro([])
+    setCarro([]);
   };
 
   return (
