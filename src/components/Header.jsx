@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-function Header({ carro, Removecarrito, Incrementar, Reducir }) {
+function Header({ carro, removeCarrito, Incrementar, Reducir, limpiarCarro }) {
 
   const totalCarro = useMemo( () => carro.reduce( (total, item ) => total + (item.cantidad * item.price), 0), [carro] )
 
@@ -73,7 +73,7 @@ function Header({ carro, Removecarrito, Incrementar, Reducir }) {
                             <button 
                               className="btn btn-danger" 
                               type="button"
-                              onClick={() => Removecarrito(guitar.id)}
+                              onClick={() => removeCarrito(guitar.id)}
                             >
                               X
                             </button>
@@ -86,7 +86,7 @@ function Header({ carro, Removecarrito, Incrementar, Reducir }) {
                 <p className="text-end">
                   Total pagar: <span className="fw-bold">${totalCarro}</span>
                 </p>
-                <button className="btn btn-dark w-100 mt-3 p-2">
+                <button className="btn btn-dark w-100 mt-3 p-2" onClick={() => limpiarCarro()}>
                   Vaciar Carrito
                 </button>
               </div>

@@ -12,6 +12,7 @@ function App() {
     const itemExiste = carro.findIndex((guitar) => guitar.id == propiedades.id); //Devuelve -1 cuando no encuentra algo igual
 
     if (itemExiste >= 0) {
+      if (carro[itemExiste].cantidad >= 5) return
       const actualizarCarro = [...carro];
       actualizarCarro[itemExiste].cantidad++;
       setCarro(actualizarCarro);
@@ -21,13 +22,13 @@ function App() {
     }
   };
 
-  const Removecarrito = (id) => {
+  const removeCarrito = (id) => {
     setCarro((prevCarro) => prevCarro.filter((guitar) => guitar.id !== id));
   };
 
   const Incrementar = (id) => {
     const actualizarCarro = carro.map((propiedades) => {
-      if (propiedades.id === id) {
+      if (propiedades.id === id && propiedades.cantidad < 5) {
         return {
           ...propiedades,
           cantidad: propiedades.cantidad + 1,
@@ -40,7 +41,7 @@ function App() {
 
   const Reducir = (id) => {
     const actualizarCarro = carro.map((propiedades) => {
-      if (propiedades.id === id) {
+      if (propiedades.id === id && propiedades.cantidad > 0) {
         return {
           ...propiedades,
           cantidad: propiedades.cantidad - 1,
@@ -51,13 +52,18 @@ function App() {
     setCarro(actualizarCarro);
   };
 
+  const limpiarCarro = () => {
+    setCarro([])
+  };
+
   return (
     <>
       <Header
         carro={carro}
-        Removecarrito={Removecarrito}
+        removeCarrito={removeCarrito}
         Incrementar={Incrementar}
         Reducir={Reducir}
+        limpiarCarro={limpiarCarro}
       />
 
       <main className="container-xl mt-5">
